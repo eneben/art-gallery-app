@@ -25,9 +25,5 @@ export default function HomePage() {
   }
   if (!data) return <p>No data available.</p>;
 
-  return (
-    <div>
-      <ArtPiecesList pieces={data} />
-    </div>
-  );
+  return <ArtPiecesList pieces={data} />;
 }
