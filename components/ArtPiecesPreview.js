@@ -10,7 +10,6 @@ export default function ArtPiecesPreview({ piece }) {
   `;
 
   return (
-    <>
       <figure>
         <StyledContainer>
           <Image
@@ -22,6 +21,5 @@ export default function ArtPiecesPreview({ piece }) {
         </StyledContainer>
         <figcaption>{`"${title}" by ${artist}`}</figcaption>
       </figure>
-    </>
   );
 }
