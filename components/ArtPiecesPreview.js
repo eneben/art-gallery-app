@@ -19,7 +19,7 @@ export default function ArtPiecesPreview({ piece }) {
           style={{ objectFit: "contain" }}
         />
       </StyledContainer>
-      <figcaption>{`by ${artist}`}</figcaption>
+      <figcaption>{`"${title}" by ${artist}`}</figcaption>
     </figure>
   );
 }
