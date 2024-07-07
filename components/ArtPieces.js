@@ -11,6 +11,8 @@ export default function ArtPiecesList({ pieces }) {
       <h1>List of all Art Pieces</h1>
       <ul>
         {pieces.map((piece) => {
+          console.log("pieces: ", pieces);
+
           return (
             <ListItem key={piece.slug}>
               <ArtPiecesPreview piece={piece} />
