@@ -7,7 +7,9 @@ export default function Spotlight({ image, artist }) {
     height: 300px;
   `;
 
-  const StyleHeading = styled.h1``;
+  const StyleHeading = styled.h1`
+    display: block;
+  `;
   return (
     <>
       <SpotlightComponent>
