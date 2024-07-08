@@ -16,9 +16,18 @@ export default function ArtPieces({ pieces }) {
     margin: 40px 0;
   `;
 
+  const StyledParagraph = styled.p`
+    font-size: 14px;
+    text-align: center;
+    margin-bottom: 30px;
+  `;
+
   return (
     <>
-      <StyledHeading>List of all Art Pieces</StyledHeading>
+      <StyledHeading>List of All Art Pieces</StyledHeading>
+      <StyledParagraph>
+        Click on a image or description to see more.
+      </StyledParagraph>
       <StyledList>
         {pieces.map((piece) => {
           return (
