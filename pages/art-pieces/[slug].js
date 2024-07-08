@@ -2,8 +2,6 @@ import { useRouter } from "next/router";
 import Details from "@/components/ArtPieceDetails";
 import Link from "next/link";
 
-//pieces als prop empfangen - von app component runterreichen?
-
 export default function DetailsPage({ pieces }) {
   const router = useRouter();
   const { slug } = router.query;

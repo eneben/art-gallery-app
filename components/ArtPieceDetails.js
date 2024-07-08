@@ -23,8 +23,8 @@ export default function Details({ piece }) {
           style={{ objectFit: "contain" }}
         />
       </StyledContainer>
+      <h1>{`${artist}: "${title}"`}</h1>
       <StyledList>
-        <li>{`${artist}: "${title}"`}</li>
         <li>year: {year}</li>
         <li>genre: {genre}</li>
       </StyledList>
