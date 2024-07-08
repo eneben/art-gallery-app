@@ -19,6 +19,11 @@ export default function Spotlight({ image, artist }) {
     margin: 40px;
   `;
 
+  const StyledImageDescription = styled.figcaption`
+    color: #fff;
+    margin-bottom: 50px;
+  `;
+
   return (
     <>
       <StyledHeading>Art GALLERY</StyledHeading>
@@ -31,7 +36,7 @@ export default function Spotlight({ image, artist }) {
           style={{ objectFit: "cover" }}
         />
       </SpotlightComponent>
-      <figcaption>{` by ${artist}`}</figcaption>
+      <StyledImageDescription>{` by ${artist}`}</StyledImageDescription>
     </>
   );
 }
