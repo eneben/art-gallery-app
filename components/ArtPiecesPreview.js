@@ -7,24 +7,45 @@ export default function ArtPiecesPreview({ piece }) {
 
   const StyledContainer = styled.div`
     position: relative;
-    height: 300px;
+    width: 100%;
+    margin-bottom: 20px;
+
+    &::after {
+      content: "";
+      display: block;
+      padding-bottom: 100%;
+    }
+  `;
+
+  const StyledImageSection = styled.figure`
+    margin-bottom: 50px;
+  `;
+
+  const StyledImageDescription = styled.figcaption`
+    color: #fff;
+  `;
+
+  const StyledLink = styled(Link)`
+    text-decoration: none;
   `;
 
   return (
     <>
-      <Link href={`/art-pieces/${slug}`}>
-        <figure>
+      <StyledLink href={`/art-pieces/${slug}`}>
+        <StyledImageSection>
           <StyledContainer>
             <Image
               src={image}
               alt={`This is the image ${title} by ${artist}.`}
               fill
-              style={{ objectFit: "contain" }}
+              style={{ objectFit: "cover" }}
             />
           </StyledContainer>
-          <figcaption>{`"${title}" by ${artist}`}</figcaption>
-        </figure>
-      </Link>
+          <StyledImageDescription>
+            {`"${title}"`} <br /> {`by ${artist}`}
+          </StyledImageDescription>
+        </StyledImageSection>
+      </StyledLink>
     </>
   );
 }

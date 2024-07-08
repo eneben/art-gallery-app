@@ -4,21 +4,31 @@ import styled from "styled-components";
 export default function Spotlight({ image, artist }) {
   const SpotlightComponent = styled.div`
     position: relative;
-    height: 300px;
+    width: 100%;
+    margin-bottom: 20px;
+
+    &::after {
+      content: "";
+      display: block;
+      padding-bottom: 100%;
+    }
   `;
 
-  const StyleHeading = styled.h1`
-    display: block;
+  const StyledHeading = styled.h1`
+    text-align: center;
+    margin: 40px;
   `;
+
   return (
     <>
+      <StyledHeading>Art GALLERY</StyledHeading>
+
       <SpotlightComponent>
-        <StyleHeading>Art GALLERY</StyleHeading>
         <Image
           src={image}
           alt={`by ${artist}`}
           fill
-          style={{ objectFit: "contain" }}
+          style={{ objectFit: "cover" }}
         />
       </SpotlightComponent>
       <figcaption>{` by ${artist}`}</figcaption>
