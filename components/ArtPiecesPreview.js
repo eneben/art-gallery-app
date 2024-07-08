@@ -1,6 +1,5 @@
 import Image from "next/image";
 import styled from "styled-components";
-import Details from "./ArtPieceDetails";
 import Link from "next/link";
 
 export default function ArtPiecesPreview({ piece }) {

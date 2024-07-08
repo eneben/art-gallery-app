@@ -16,7 +16,6 @@ export default function Details({ piece }) {
     <>
       <StyledContainer>
         <Image
-          onClick={handleClick}
           src={image}
           alt={`This is the image ${title} by ${artist}.`}
           fill
