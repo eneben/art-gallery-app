@@ -1,5 +1,6 @@
 import { useRouter } from "next/router";
 import Details from "@/components/ArtPieceDetails";
+import Link from "next/link";
 
 //pieces als prop empfangen - von app component runterreichen?
 
@@ -16,9 +17,7 @@ export default function DetailsPage({ pieces }) {
   return (
     <>
       <Details piece={currentArtPiece} />
-      <button type="button" onClick={() => router.back()}>
-        Go back to art list
-      </button>
+      <Link href="/">Go back to art list</Link>
     </>
   );
 }
