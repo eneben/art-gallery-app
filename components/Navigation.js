@@ -12,16 +12,18 @@ export default function Navigation() {
   `;
 
   return (
-    <ul>
-      <ListItem>
-        <Link href="/">Spotlight</Link>
-      </ListItem>
-      <ListItem>
-        <Link href="/art-pieces">Art Pieces</Link>
-      </ListItem>
-      <ListItem>
-        <Link href="/favorites">Favorites</Link>
-      </ListItem>
-    </ul>
+    <nav>
+      <StyledList>
+        <ListItem>
+          <Link href="/">Spotlight</Link>
+        </ListItem>
+        <ListItem>
+          <Link href="/art-pieces">Art Pieces</Link>
+        </ListItem>
+        <ListItem>
+          <Link href="/favorites">Favorites</Link>
+        </ListItem>
+      </StyledList>
+    </nav>
   );
 }
