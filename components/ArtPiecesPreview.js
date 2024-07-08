@@ -10,16 +10,16 @@ export default function ArtPiecesPreview({ piece }) {
   `;
 
   return (
-      <figure>
-        <StyledContainer>
-          <Image
-            src={image}
-            alt={`This is the image ${title} by ${artist}.`}
-            fill
-            style={{ objectFit: "contain" }}
-          />
-        </StyledContainer>
-        <figcaption>{`"${title}" by ${artist}`}</figcaption>
-      </figure>
+    <figure>
+      <StyledContainer>
+        <Image
+          src={image}
+          alt={`This is the image ${title} by ${artist}.`}
+          fill
+          style={{ objectFit: "contain" }}
+        />
+      </StyledContainer>
+      <figcaption>{`"${title}" by ${artist}`}</figcaption>
+    </figure>
   );
 }
