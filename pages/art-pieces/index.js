@@ -1,4 +1,4 @@
-import ArtPiecesPreview from "./ArtPiecesPreview";
+import ArtPiecesPreview from "@/components/ArtPiecesPreview";
 import styled from "styled-components";
 
 export default function ArtPieces({ pieces }) {
