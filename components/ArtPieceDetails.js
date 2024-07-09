@@ -17,9 +17,16 @@ export default function Details({ piece }) {
     colors,
   } = piece;
 
+  const StyledHeading = styled.h1`
+    text-align: center;
+    font-size: 20px;
+    margin: 40px 0;
+  `;
+
   const StyledContainer = styled.div`
     position: relative;
-    height: 300px;
+    height: 350px;
+    margin: 50px 0;
   `;
 
   const StyledList = styled.ul`
@@ -42,6 +49,12 @@ export default function Details({ piece }) {
     &:hover {
       opacity: 0.8;
     }
+  `;
+
+  const StyledParagraph = styled.p`
+    font-size: 12px;
+    text-align: center;
+    margin-bottom: 20px;
   `;
 
   async function handleColorClick(color) {
@@ -77,7 +90,7 @@ export default function Details({ piece }) {
           style={{ objectFit: "contain" }}
         />
       </StyledContainer>
-      <h1>{`${artist}: "${title}"`}</h1>
+      <StyledHeading>{`${artist}: "${title}"`}</StyledHeading>
       <StyledList>
         <li>year: {year}</li>
         <li>genre: {genre}</li>
@@ -94,11 +107,11 @@ export default function Details({ piece }) {
           );
         })}
       </StyledColorSection>
-      <p>
+      <StyledParagraph>
         {isCopied
-          ? "The hex value of the clicked color is copied to the clipboard."
+          ? "The hex value is copied to the clipboard."
           : "By clicking on a color you can copy it to the clipboard."}
-      </p>
+      </StyledParagraph>
       <Comments comments={comments} />
       <ArtPiecesInfo onSubmitComment={handleAddComment} />
     </>
