@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export default function ArtPiecesInfo({ onSubmitComment }) {
+export default function CommentForm({ onSubmitComment }) {
   const [comment, setComment] = useState("");
 
   function handleSubmit(event) {

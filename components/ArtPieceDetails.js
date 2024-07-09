@@ -2,7 +2,7 @@ import Image from "next/image";
 import { useState, useEffect } from "react";
 import styled from "styled-components";
 import Comments from "./Comments";
-import ArtPiecesInfo from "./CommentForm";
+import CommentForm from "./CommentForm";
 
 export default function Details({ piece }) {
   const [isCopied, setIsCopied] = useState(false);
@@ -113,7 +113,7 @@ export default function Details({ piece }) {
           : "By clicking on a color you can copy it to the clipboard."}
       </StyledParagraph>
       <Comments comments={comments} />
-      <ArtPiecesInfo onSubmitComment={handleAddComment} />
+      <CommentForm onSubmitComment={handleAddComment} />
     </>
   );
 }
