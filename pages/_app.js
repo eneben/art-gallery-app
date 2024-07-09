@@ -1,6 +1,7 @@
 import GlobalStyle from "../styles";
 import useSWR from "swr";
 import Layout from "@/components/Layout";
+import { useState } from "react";
 
 const URL = "https://example-apis.vercel.app/api/art";
 
@@ -18,6 +19,15 @@ const fetcher = async (url) => {
 export default function App({ Component, pageProps }) {
   const { data, isLoading, error } = useSWR(URL, fetcher);
 
+  // NEU:
+  const [artPiecesInfo, setArtPiecesInfo] = useState([]);
+
+  function handleToggleFavorite(isFavorite) {
+    isFavorite = !isFavorite;
+  }
+
+  const onToggleFavorite = handleToggleFavorite;
+
   if (isLoading) return <p>Loading...</p>;
   if (error) {
     console.log(`An error occured while fetching data. Status: ${error.status}. Info:
@@ -29,7 +39,14 @@ export default function App({ Component, pageProps }) {
   return (
     <Layout>
       <GlobalStyle />
-      <Component {...pageProps} pieces={data} />
+      <Component
+        {...pageProps}
+        // NEU: =======
+        pieces={data}
+        artPiecesInfo={artPiecesInfo}
+        setArtPiecesInfo={setArtPiecesInfo}
+        // ============
+      />
     </Layout>
   );
 }

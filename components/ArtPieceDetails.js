@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { useState, useEffect } from "react";
 import styled from "styled-components";
+import FavoriteButton from "./FavoriteButton";
 
 export default function Details({ piece }) {
   const [isCopied, setIsCopied] = useState(false);
@@ -70,22 +71,25 @@ export default function Details({ piece }) {
         />
       </StyledContainer>
       <h1>{`${artist}: "${title}"`}</h1>
-      <StyledList>
-        <li>year: {year}</li>
-        <li>genre: {genre}</li>
-        <li>colors:</li>
-      </StyledList>
-      <StyledColorSection>
-        {colors.map((color) => {
-          return (
-            <StyledColorCircle
-              key={color}
-              color={color}
-              onClick={() => handleColorClick(color)}
-            />
-          );
-        })}
-      </StyledColorSection>
+      <>
+        <FavoriteButton />
+        <StyledList>
+          <li>year: {year}</li>
+          <li>genre: {genre}</li>
+          <li>colors:</li>
+        </StyledList>
+        <StyledColorSection>
+          {colors.map((color) => {
+            return (
+              <StyledColorCircle
+                key={color}
+                color={color}
+                onClick={() => handleColorClick(color)}
+              />
+            );
+          })}
+        </StyledColorSection>
+      </>
       <p>
         {isCopied
           ? "The hex value of the clicked color is copied to the clipboard."

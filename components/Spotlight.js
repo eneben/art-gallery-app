@@ -1,19 +1,28 @@
 import Image from "next/image";
 import styled from "styled-components";
+import FavoriteButton from "./FavoriteButton";
 
 export default function Spotlight({ image, artist }) {
   const SpotlightComponent = styled.div`
     position: relative;
     height: 300px;
+    margin-bottom: 30px;
   `;
 
-  const StyleHeading = styled.h1`
+  const StyledHeading = styled.h1`
     display: block;
+    margin-left: 30px;
   `;
+
+  const StyledFigcaption = styled.figcaption`
+    /* display: block; */
+    margin-left: 30px;
+  `;
+
   return (
     <>
+      <StyledHeading>Art GALLERY</StyledHeading>
       <SpotlightComponent>
-        <StyleHeading>Art GALLERY</StyleHeading>
         <Image
           src={image}
           alt={`by ${artist}`}
@@ -21,7 +30,8 @@ export default function Spotlight({ image, artist }) {
           style={{ objectFit: "contain" }}
         />
       </SpotlightComponent>
-      <figcaption>{` by ${artist}`}</figcaption>
+      <StyledFigcaption>{` by ${artist}`}</StyledFigcaption>
+      <FavoriteButton />
     </>
   );
 }
