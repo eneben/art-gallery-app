@@ -1,6 +1,5 @@
 import Image from "next/image";
 import styled from "styled-components";
-import FavoriteButton from "./FavoriteButton";
 
 export default function Spotlight({ image, artist }) {
   const SpotlightComponent = styled.div`
@@ -31,7 +30,6 @@ export default function Spotlight({ image, artist }) {
         />
       </SpotlightComponent>
       <StyledFigcaption>{` by ${artist}`}</StyledFigcaption>
-      <FavoriteButton />
     </>
   );
 }

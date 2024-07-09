@@ -1,7 +1,7 @@
 import GlobalStyle from "../styles";
 import useSWR from "swr";
 import Layout from "@/components/Layout";
-import React, { useState } from "react";
+import { useState, useEffect } from "react";
 
 const URL = "https://example-apis.vercel.app/api/art";
 
@@ -16,18 +16,11 @@ const fetcher = async (url) => {
   return response.json();
 };
 
-// console.log("data: ", data);
-// NEU:
-const [artPiecesInfo, setArtPiecesInfo] = useState([]);
-
-// TEST - raus:
-function handleToggleFavorite() {
-  setIsFavorite(prevIsFavorite ? !prevIsFavorite : prevIsFavorite);
-}
-
-// const onToggleFavorite = handleToggleFavorite;
+// console.log("artPiecesInfo: ", artPiecesInfo);
 
 export default function App({ Component, pageProps }) {
+  const [artPiecesInfo, setArtPiecesInfo] = useState([]);
+
   const { data, isLoading, error } = useSWR(URL, fetcher);
 
   if (isLoading) return <p>Loading...</p>;
@@ -37,21 +30,36 @@ export default function App({ Component, pageProps }) {
       ${error.info?.message}.`);
     return <p>An error occured.</p>;
   }
+
   if (!data) return <p>No data available.</p>;
 
+  // Sollen der fetch und die setter function in einen useEffect?
+  // (das ist bei State handling nicht üblich, beim fetchen schon)
+  useEffect(() => {
+    setArtPiecesInfo(
+      data.map((artPiece) => ({ slug: artPiece.slug, isFavorite: false }))
+    );
+  }, [data]);
+
+  function handleToggleFavorite(slug) {
+    setArtPiecesInfo((prevArtPiecesInfo) =>
+      prevArtPiecesInfo.map((artPiece) =>
+        artPiece.slug === slug
+          ? { ...artPiece, isFavorite: !artPiece.isFavorite }
+          : { artPiece }
+      )
+    );
+  }
+
   return (
-    <ArtPiecesProvider>
-      <Layout>
-        <GlobalStyle />
-        <Component
-          {...pageProps}
-          // NEU: =======
-          pieces={data}
-          artPiecesInfo={artPiecesInfo}
-          setArtPiecesInfo={setArtPiecesInfo}
-          // ============
-        />
-      </Layout>
-    </ArtPiecesProvider>
+    <Layout>
+      <GlobalStyle />
+      <Component
+        {...pageProps}
+        pieces={data}
+        artPiecesInfo={artPiecesInfo}
+        onToggleFavorite={handleToggleFavorite}
+      />
+    </Layout>
   );
 }
