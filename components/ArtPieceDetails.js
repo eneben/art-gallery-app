@@ -1,9 +1,12 @@
 import Image from "next/image";
 import { useState, useEffect } from "react";
 import styled from "styled-components";
+import Comments from "./Comments";
+import CommentForm from "./CommentForm";
 
 export default function Details({ piece }) {
   const [isCopied, setIsCopied] = useState(false);
+  const [comments, setComments] = useState([]);
 
   const {
     imageSource: image,
@@ -72,6 +75,11 @@ export default function Details({ piece }) {
     };
   }, [isCopied]);
 
+  // handleAddComment
+  function handleAddComment(commentText) {
+    setComments((prevComments) => [...prevComments, commentText]);
+  }
+
   return (
     <>
       <StyledContainer>
@@ -104,6 +112,8 @@ export default function Details({ piece }) {
           ? "The hex value is copied to the clipboard."
           : "By clicking on a color you can copy it to the clipboard."}
       </StyledParagraph>
+      <Comments comments={comments} />
+      <CommentForm onSubmitComment={handleAddComment} />
     </>
   );
 }
