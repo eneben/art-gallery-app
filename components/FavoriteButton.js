@@ -1,6 +1,7 @@
 // NEU:
 import styled from "styled-components";
-import { useState } from "react";
+// import { useState } from "react";
+import React, { useState } from "react";
 
 // NEU: see HO react-data-fetching, #: Combine Fetched Data With Local State
 // U-St-5_TASK 1: Create an additional state artPiecesInfo
@@ -21,16 +22,19 @@ export default function FavoriteButton({ isFavorite, onToggleFavorite }) {
     color: purple;
   `;
 
-  const [artPiecesInfo, setArtPiecesInfo] = useState([]);
+  // TEST - das RAUS:
+  //   const [artPiecesInfo, setArtPiecesInfo] = useState([]);
 
-  //   const { imageSource: image, name: title, artist, slug } = piece;
+  const { imageSource: image, name: title, artist, slug } = piece;
 
   return (
     <StyledFavoriteButtonComponent
       isFavorite={isFavorite}
       onToggleFavorite={onToggleFavorite}
+      type="button"
+      onClick={onToggleFavorite(piece.slug)}
     >
-      {!isFavorite ? "add to favourites" : "remove from favourites"}
+      {isFavorite ? "remove from favourites" : "add to favourites"}
     </StyledFavoriteButtonComponent>
   );
 }
