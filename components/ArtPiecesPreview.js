@@ -2,8 +2,18 @@ import Image from "next/image";
 import styled from "styled-components";
 import Link from "next/link";
 import FavoriteButton from "./FavoriteButton";
+// NEU:
+import React from "react";
 
-export default function ArtPiecesPreview({ piece }) {
+export default function ArtPiecesPreview({
+  piece,
+  artPiecesInfo,
+  onToggleFavorite,
+  // NEU: nicht sicher:
+  isFavorite,
+}) {
+  console.log("isFavorite: ", isFavorite);
+
   const { imageSource: image, name: title, artist, slug } = piece;
 
   const StyledContainer = styled.div`

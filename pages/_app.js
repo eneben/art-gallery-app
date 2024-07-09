@@ -21,6 +21,10 @@ const fetcher = async (url) => {
 export default function App({ Component, pageProps }) {
   const [artPiecesInfo, setArtPiecesInfo] = useState([]);
 
+  // Wie kann ich die prop isFavorite an den FavoriteButton weitergeben?
+  // So vielleicht?:
+  // const isFavorite = { isFavorite };
+
   const { data, isLoading, error } = useSWR(URL, fetcher);
 
   if (isLoading) return <p>Loading...</p>;
@@ -33,23 +37,27 @@ export default function App({ Component, pageProps }) {
 
   if (!data) return <p>No data available.</p>;
 
-  // Sollen der fetch und die setter function in einen useEffect?
-  // (das ist bei State handling nicht üblich, beim fetchen schon)
-  useEffect(() => {
-    setArtPiecesInfo(
-      data.map((artPiece) => ({ slug: artPiece.slug, isFavorite: false }))
-    );
-  }, [data]);
-
+  // die nochmal angucken: was passiert hier eigentlich? artPiecesInfo ausloggen
+  // ternary oder if else
   function handleToggleFavorite(slug) {
-    setArtPiecesInfo((prevArtPiecesInfo) =>
-      prevArtPiecesInfo.map((artPiece) =>
-        artPiece.slug === slug
-          ? { ...artPiece, isFavorite: !artPiece.isFavorite }
-          : { artPiece }
-      )
-    );
+    const artPiece = artPiecesInfo.find((piece) => piece.slug === slug);
+    if (artPiece) {
+      setArtPiecesInfo(
+        artPiecesInfo.map((pieceInfo) =>
+          pieceInfo.slug === slug
+            ? { slug, isFavorite: !pieceInfo.isFavorite }
+            : pieceInfo
+        )
+      );
+    } else {
+      setArtPiecesInfo([...artPiecesInfo, { slug, isFavorite: true }]);
+    }
   }
+  // =========gelöscht:
+  // prevArtPiecesInfo.map((artPiece) =>
+  // artPiece.slug === slug
+  //     ? { ...artPiece, isFavorite: !artPiece.isFavorite }
+  //     : { artPiece }
 
   return (
     <Layout>

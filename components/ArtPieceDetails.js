@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import styled from "styled-components";
 import FavoriteButton from "./FavoriteButton";
 
+// hier bzw. in den components fehlen noch die ganzen Props
 export default function Details({ piece }) {
   const [isCopied, setIsCopied] = useState(false);
 
