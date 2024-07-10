@@ -3,7 +3,11 @@ import Details from "@/components/ArtPieceDetails";
 import Link from "next/link";
 import styled from "styled-components";
 
-export default function DetailsPage({ pieces }) {
+export default function DetailsPage({
+  pieces,
+  artPiecesInfo,
+  onToggleFavorite,
+}) {
   const router = useRouter();
   const { slug } = router.query;
 
@@ -30,7 +34,11 @@ export default function DetailsPage({ pieces }) {
 
   return (
     <>
-      <Details piece={currentArtPiece} />
+      <Details
+        piece={currentArtPiece}
+        artPiecesInfo={artPiecesInfo}
+        onToggleFavorite={onToggleFavorite}
+      />
       <StyledLink href="/art-pieces">Go back to art list</StyledLink>
     </>
   );

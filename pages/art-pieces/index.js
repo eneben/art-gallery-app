@@ -2,7 +2,7 @@ import ArtPiecesPreview from "@/components/ArtPiecesPreview";
 
 import styled from "styled-components";
 
-export default function ArtPieces({ pieces }) {
+export default function ArtPieces({ pieces, artPiecesInfo, onToggleFavorite }) {
   const StyledList = styled.ul`
     margin: 0;
     padding: 0;
@@ -26,14 +26,16 @@ export default function ArtPieces({ pieces }) {
   return (
     <>
       <StyledHeading>List of All Art Pieces</StyledHeading>
-      <StyledParagraph>
-        Click on a image or description to see more.
-      </StyledParagraph>
+      <StyledParagraph>Click on a image to see more.</StyledParagraph>
       <StyledList>
         {pieces.map((piece) => {
           return (
             <ListItem key={piece.slug}>
-              <ArtPiecesPreview piece={piece} />
+              <ArtPiecesPreview
+                piece={piece}
+                artPiecesInfo={artPiecesInfo}
+                onToggleFavorite={onToggleFavorite}
+              />
             </ListItem>
           );
         })}

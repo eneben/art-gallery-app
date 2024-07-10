@@ -1,9 +1,20 @@
 import Image from "next/image";
 import styled from "styled-components";
 import Link from "next/link";
+import FavoriteButton from "./FavoriteButton";
 
-export default function ArtPiecesPreview({ piece }) {
+export default function ArtPiecesPreview({
+  piece,
+  artPiecesInfo,
+  onToggleFavorite,
+}) {
   const { imageSource: image, name: title, artist, slug } = piece;
+
+  const artPiece = artPiecesInfo.find(
+    (artPieceInfo) => artPieceInfo.slug === slug
+  );
+
+  const isFavorite = artPiece?.isFavorite || false;
 
   const StyledContainer = styled.div`
     position: relative;
@@ -19,6 +30,7 @@ export default function ArtPiecesPreview({ piece }) {
 
   const StyledImageSection = styled.figure`
     margin-bottom: 50px;
+    position: relative;
   `;
 
   const StyledImageDescription = styled.figcaption`
@@ -29,10 +41,15 @@ export default function ArtPiecesPreview({ piece }) {
     text-decoration: none;
   `;
 
+  const StyledDescriptionSection = styled.div`
+    display: flex;
+    justify-content: space-between;
+  `;
+
   return (
     <>
-      <StyledLink href={`/art-pieces/${slug}`}>
-        <StyledImageSection>
+      <StyledImageSection>
+        <StyledLink href={`/art-pieces/${slug}`}>
           <StyledContainer>
             <Image
               src={image}
@@ -41,11 +58,17 @@ export default function ArtPiecesPreview({ piece }) {
               style={{ objectFit: "cover" }}
             />
           </StyledContainer>
+        </StyledLink>
+        <StyledDescriptionSection>
           <StyledImageDescription>
             {`"${title}"`} <br /> {`by ${artist}`}
           </StyledImageDescription>
-        </StyledImageSection>
-      </StyledLink>
+          <FavoriteButton
+            isFavorite={isFavorite}
+            onToggleFavorite={() => onToggleFavorite(slug)}
+          />
+        </StyledDescriptionSection>
+      </StyledImageSection>
     </>
   );
 }

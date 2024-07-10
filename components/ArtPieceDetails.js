@@ -3,8 +3,9 @@ import { useState, useEffect } from "react";
 import styled from "styled-components";
 import Comments from "./Comments";
 import CommentForm from "./CommentForm";
+import FavoriteButton from "./FavoriteButton";
 
-export default function Details({ piece }) {
+export default function Details({ piece, artPiecesInfo, onToggleFavorite }) {
   const [isCopied, setIsCopied] = useState(false);
   const [comments, setComments] = useState([]);
 
@@ -15,12 +16,19 @@ export default function Details({ piece }) {
     year,
     genre,
     colors,
+    slug,
   } = piece;
+
+  const artPiece = artPiecesInfo.find(
+    (artPieceInfo) => artPieceInfo.slug === slug
+  );
+
+  const isFavorite = artPiece?.isFavorite || false;
 
   const StyledHeading = styled.h1`
     text-align: center;
     font-size: 20px;
-    margin: 40px 0;
+    margin: 20px 0;
   `;
 
   const StyledContainer = styled.div`
@@ -54,6 +62,13 @@ export default function Details({ piece }) {
   const StyledParagraph = styled.p`
     font-size: 12px;
     text-align: center;
+    margin-bottom: 20px;
+  `;
+
+  const ButtonWrapper = styled.div`
+    display: flex;
+    justify-content: center;
+    gap: 20px;
     margin-bottom: 20px;
   `;
 
@@ -91,6 +106,14 @@ export default function Details({ piece }) {
         />
       </StyledContainer>
       <StyledHeading>{`${artist}: "${title}"`}</StyledHeading>
+      <ButtonWrapper>
+        <FavoriteButton
+          isFavorite={isFavorite}
+          onToggleFavorite={() => onToggleFavorite(slug)}
+        />
+        <StyledParagraph>Add to favorites.</StyledParagraph>
+      </ButtonWrapper>
+
       <StyledList>
         <li>year: {year}</li>
         <li>genre: {genre}</li>
