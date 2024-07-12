@@ -3,6 +3,36 @@ import styled from "styled-components";
 import Link from "next/link";
 import FavoriteButton from "./FavoriteButton";
 
+const StyledContainer = styled.div`
+  position: relative;
+  width: 100%;
+  margin-bottom: 20px;
+
+  &::after {
+    content: "";
+    display: block;
+    padding-bottom: 100%;
+  }
+`;
+
+const StyledImageSection = styled.figure`
+  margin-bottom: 50px;
+  position: relative;
+`;
+
+const StyledImageDescription = styled.figcaption`
+  color: #fff;
+`;
+
+const StyledLink = styled(Link)`
+  text-decoration: none;
+`;
+
+const StyledDescriptionSection = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
+
 export default function ArtPiecesPreview({
   piece,
   artPiecesInfo,
@@ -16,36 +46,6 @@ export default function ArtPiecesPreview({
 
   const isFavorite = artPiece?.isFavorite || false;
 
-  const StyledContainer = styled.div`
-    position: relative;
-    width: 100%;
-    margin-bottom: 20px;
-
-    &::after {
-      content: "";
-      display: block;
-      padding-bottom: 100%;
-    }
-  `;
-
-  const StyledImageSection = styled.figure`
-    margin-bottom: 50px;
-    position: relative;
-  `;
-
-  const StyledImageDescription = styled.figcaption`
-    color: #fff;
-  `;
-
-  const StyledLink = styled(Link)`
-    text-decoration: none;
-  `;
-
-  const StyledDescriptionSection = styled.div`
-    display: flex;
-    justify-content: space-between;
-  `;
-
   return (
     <>
       <StyledImageSection>
@@ -56,6 +56,7 @@ export default function ArtPiecesPreview({
               alt={`This is the image ${title} by ${artist}.`}
               fill
               style={{ objectFit: "cover" }}
+              priority={true}
             />
           </StyledContainer>
         </StyledLink>

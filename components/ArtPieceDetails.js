@@ -5,6 +5,53 @@ import Comments from "./Comments";
 import CommentForm from "./CommentForm";
 import FavoriteButton from "./FavoriteButton";
 
+const StyledHeading = styled.h1`
+  text-align: center;
+  font-size: 20px;
+  margin: 20px 0;
+`;
+
+const StyledContainer = styled.div`
+  position: relative;
+  height: 350px;
+  margin: 50px 0;
+`;
+
+const StyledList = styled.ul`
+  list-style: none;
+`;
+
+const StyledColorSection = styled.ul`
+  display: flex;
+  gap: 10px;
+  list-style: none;
+`;
+
+const StyledColorCircle = styled.li`
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  background-color: ${(props) => props.color};
+  cursor: pointer;
+
+  &:hover {
+    opacity: 0.8;
+  }
+`;
+
+const StyledParagraph = styled.p`
+  font-size: 12px;
+  text-align: center;
+  margin-bottom: 20px;
+`;
+
+const ButtonWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-bottom: 20px;
+`;
+
 export default function Details({ piece, artPiecesInfo, onToggleFavorite }) {
   const [isCopied, setIsCopied] = useState(false);
   const [comments, setComments] = useState([]);
@@ -24,53 +71,6 @@ export default function Details({ piece, artPiecesInfo, onToggleFavorite }) {
   );
 
   const isFavorite = artPiece?.isFavorite || false;
-
-  const StyledHeading = styled.h1`
-    text-align: center;
-    font-size: 20px;
-    margin: 20px 0;
-  `;
-
-  const StyledContainer = styled.div`
-    position: relative;
-    height: 350px;
-    margin: 50px 0;
-  `;
-
-  const StyledList = styled.ul`
-    list-style: none;
-  `;
-
-  const StyledColorSection = styled.ul`
-    display: flex;
-    gap: 10px;
-    list-style: none;
-  `;
-
-  const StyledColorCircle = styled.li`
-    height: 40px;
-    width: 40px;
-    border-radius: 50%;
-    background-color: ${(props) => props.color};
-    cursor: pointer;
-
-    &:hover {
-      opacity: 0.8;
-    }
-  `;
-
-  const StyledParagraph = styled.p`
-    font-size: 12px;
-    text-align: center;
-    margin-bottom: 20px;
-  `;
-
-  const ButtonWrapper = styled.div`
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-    margin-bottom: 20px;
-  `;
 
   async function handleColorClick(color) {
     try {
@@ -103,6 +103,7 @@ export default function Details({ piece, artPiecesInfo, onToggleFavorite }) {
           alt={`This is the image ${title} by ${artist}.`}
           fill
           style={{ objectFit: "contain" }}
+          priority={true}
         />
       </StyledContainer>
       <StyledHeading>{`${artist}: "${title}"`}</StyledHeading>
